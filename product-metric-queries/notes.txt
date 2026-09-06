@@ -1,0 +1,6 @@
+To improve query performance in case billions of records:
+- Use partitioning strategy like partitioning order by date or hour to reduce amount of scanned data
+- Use indexing on primary keys or frequently selected/filtered columns like which may filter parts of the data that weren't included in conditioned queries like completed orders query, 
+date-interval queries, etc ...
+- Optimize data types to reduce size of scanned columns
+- Avoid full scans (select *)
