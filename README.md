@@ -1,8 +1,8 @@
-# yalla_eats
+# Yalla Eats
 Yalla eats is a repo ti show case a food ordering business data analytics, etl, modeling,  A/B testing and visualization 
 
 
-## Yalla Eats Analytics Platform:
+## Analytics Platform:
 An end-to-end containerized data platform built to ingest operational food-delivery data from MySQL into ClickHouse,
 supporting high-throughput product reporting and statistical A/B test evaluation.
 
@@ -17,6 +17,7 @@ supporting high-throughput product reporting and statistical A/B test evaluation
   Bash docker compose up --build -d
 
 ## A/B Test Summary (xsell_reco_v1) recommendation: 
-- Ship Cross-Sell Conversion: Increased from 35.38% to 80.01% ).
+- Ship Cross-Sell carousel to users
+- Conversion (orders with 2+ products): Increased from 35.38% to 80.01%).
 - Average Revenue / User: Rose from 65 to 115 .
 - Statistical Significance: Z = 18.5, p-value < 0.0001 .
