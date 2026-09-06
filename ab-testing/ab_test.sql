@@ -53,7 +53,7 @@ SELECT
     `is_exp_exposed`,
     count(`user_id`) AS `sample_size`,
     round(avg(`completed_orders`), 2) AS `avg_orders_per_user`,
-    round(sum(`multi_item_orders`) / sum(`completed_orders`) * 100, 2) AS `cross_sell_order_pct`,
+    round(sum(`multi_item_orders`) / sum(`completed_orders`) * 100, 2) AS `orders_with_2+_products`,
     round(avg(`total_spend`), 2) AS `avg_revenue_per_user`
 FROM `user_metrics`
 GROUP BY `exp_variant`, `is_exp_exposed`
