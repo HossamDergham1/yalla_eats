@@ -1,0 +1,7 @@
+Data layers:
+- Row data >>> Staging data >>> consumption tables
+- Staging act as abstracted layer between row and consumption tables
+- For consumption tables, One Big Table is selected to avoid need for long hash joins and reduce query time for large number of records 
+beside this business case is suited for OBT as one table can have all needed info
+- If any new column got updated or added then column alias or type will be modified or added in the staging layer preserving down-stream
+consumption tables.
