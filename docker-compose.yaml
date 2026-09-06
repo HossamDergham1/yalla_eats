@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_oltp
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:latest
+    container_name: clickhouse_olap
+    restart: unless-stopped
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    environment:
+      CLICKHOUSE_DB: analytics_db
+      CLICKHOUSE_USER: default
+      CLICKHOUSE_PASSWORD: clickhouse_password
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8123/ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  data-generator:
+    build:
+      context: ./data-generator
+    container_name: data_generator
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+      MYSQL_DB: app_db
+      NUM_USERS: "3000"
+      NUM_ORDERS: "9000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  etl:
+    build:
+      context: ./etl
+    container_name: etl_service
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_password
+      MYSQL_DB: app_db
+      CLICKHOUSE_HOST: clickhouse
+      CLICKHOUSE_PORT: "8123"
+      CLICKHOUSE_PASSWORD: clickhouse_password
+    volumes:
+      - ./modeling:/app/modeling
+    depends_on:
+      mysql:
+        condition: service_healthy
+      clickhouse:
+        condition: service_healthy
+      data-generator:
+        condition: service_completed_successfully
