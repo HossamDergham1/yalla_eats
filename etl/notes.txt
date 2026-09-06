@@ -1,0 +1,10 @@
+ETL:
+- for row ingestion: ReplacingMergeTree is chosen as an engine as it  deduplicates rows sharing the same sorting key and handle 
+updated records faster
+
+Incremental-loading approach:
+Current Architecture (Full Reload with Idempotency):
+- The current batch etl script excute full load and extracts all rows from MySQL, truncate tables in ClickHouse, 
+and bulk-inserts the new data
+- for begger datasets: 
+- A CDC policy will be applied where new/updated records will be appended to existing tables (CDC is bypassed here due to tight time)
