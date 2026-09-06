@@ -1,0 +1,13 @@
+- Finale decision is to recommend launch the cross-sell carousel to users .
+
+key figures:
+- sample size: control(822) vs treatment(853)
+- orders with 2+ products %: control(~35%) vs treatment(~80%)
+- avg revenue per user: control(64) vs treatment(115)
+- avg orders per user: control(2.81) vs treatment(2.89)
+
+Key findings and insights:
+- Users spent significantly more money with average spending per user of 80% increase between exposed users and control users .
+- Orders had more products for user that saw the cross-sell carouse with (80% of exposed users had 2+ product per order vs 35% for control users)
+Users spent significantly more money: Average spending per user jumped from $64.17 to $115.33 (an 80% increase).
+- Users ordered similar number of orders but exposed users had much higher order revenue and ordered more products
