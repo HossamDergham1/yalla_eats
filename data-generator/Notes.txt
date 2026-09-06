@@ -1,0 +1,10 @@
+Generator:
+- Generated data for 3000 Users and 9000 Orders for a food ordering company in some Egyptian cities
+- Add users data with some messiness like incorrect city naming like (Cariro, Cario), Mixed casing, white spaces and empty values 
+- 
+Assumptions:
+- Users are assigned 50/50 between control and treatment on 5-days period
+- Some users reached the checkout cart where they can see recommendation carousel 
+- Only 60% of assigned users will reach the checkout cart screen and see recommendation carousel 
+- Treatment users that saw the carousel will have a 70% probability (assumed) of building multi-item baskets instead of ordering 1 item
+- Control users who never saw the carousel usually have 60-65% one item-orders
